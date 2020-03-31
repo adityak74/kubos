@@ -124,7 +124,14 @@ pub fn upload(
     chunk_size: u32,
 ) -> Result<String, ProtocolError> {
     let hold_count = 5;
-    let f_config = FileProtocolConfig::new(prefix, chunk_size as usize, hold_count);
+    let f_config = FileProtocolConfig::new(
+        prefix,
+        chunk_size as usize,
+        hold_count,
+        1,
+        None,
+        (chunk_size as usize) * 2,
+    );
     let f_protocol =
         FileProtocol::new(&format!("{}:{}", host_ip, host_port), remote_addr, f_config);
 
